@@ -203,7 +203,7 @@
 					return;
 				}
 
-				fetch("http://127.0.0.1:8000/api/get-first-letter/", {
+				fetch("https://digihubexpress.vercel.app/api/get-first-letter/", {
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify({ name, age, bestfriend, hobby }),
