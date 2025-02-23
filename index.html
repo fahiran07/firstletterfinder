@@ -134,6 +134,26 @@
 					width: 70%;
 				}
 			}
+			/* Circular Loader */
+			.loader {
+				display: none;
+				margin: 20px auto;
+				border: 4px solid #f3f3f3;
+				border-top: 4px solid #667eea;
+				border-radius: 50%;
+				width: 40px;
+				height: 40px;
+				animation: spin 1s linear infinite;
+			}
+
+			@keyframes spin {
+				0% {
+					transform: rotate(0deg);
+				}
+				100% {
+					transform: rotate(360deg);
+				}
+			}
 		</style>
 	</head>
 	<body>
@@ -141,7 +161,7 @@
 			<h1>Life partner's name first letter finder</h1>
 			<p>Discover the first letter of your life partner's name</p>
 		</header>
-
+		<div class="loader" id="loader"></div>
 		<div class="container" id="formContainer">
 			<form id="nameForm">
 				<label>Enter your Name:</label>
@@ -197,11 +217,17 @@
 				const formContainer = document.getElementById("formContainer");
 				const resultSection = document.getElementById("resultSection");
 				const firstLetterElement = document.getElementById("firstLetter");
+				const submitButton = document.querySelector("button");
+				const loader = document.getElementById("loader");
 
 				if (!name || !age || !bestfriend || !hobby) {
 					alert("Please fill in all the fields before submitting.");
 					return;
 				}
+
+				// Hide submit button & Show Loader
+				submitButton.style.display = "none";
+				loader.style.display = "block";
 
 				fetch("https://digihubexpress.vercel.app/api/get-first-letter/", {
 					method: "POST",
@@ -210,6 +236,9 @@
 				})
 					.then((response) => response.json())
 					.then((result) => {
+						// Hide Loader
+						loader.style.display = "none";
+
 						if (result.first_letter) {
 							formContainer.style.display = "none";
 							firstLetterElement.textContent = result.first_letter;
@@ -223,11 +252,14 @@
 							};
 						} else {
 							alert("Error: " + (result.message || "Invalid response from server"));
+							submitButton.style.display = "block"; // Show button again
 						}
 					})
 					.catch((error) => {
 						console.error("Error:", error);
 						alert("Something went wrong. Please try again.");
+						loader.style.display = "none";
+						submitButton.style.display = "block"; // Show button again
 					});
 			});
 		</script>
