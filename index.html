@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Find First Letter</title>
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+				font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+			}
+			body {
+				background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+				min-height: 100vh;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
+			h1 {
+				font-size: 2rem !important;
+			}
+			header,
+			footer {
+				width: 100%;
+				text-align: center;
+				padding: 1rem;
+				background: linear-gradient(135deg, #667eea, #764ba2);
+				color: white;
+			}
+			.container {
+				width: 90%;
+				max-width: 800px;
+				background: white;
+				padding: 2rem;
+				border-radius: 1rem;
+				box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+				margin: 2rem 0;
+				text-align: center;
+			}
+			label {
+				font-weight: bold;
+				margin-top: 10px;
+				display: block;
+			}
+			input {
+				width: 100%;
+				padding: 10px;
+				margin-top: 5px;
+				border: 1px solid #ddd;
+				border-radius: 5px;
+			}
+			button {
+				width: 100%;
+				padding: 10px;
+				margin-top: 15px;
+				background: #667eea;
+				color: white;
+				border: none;
+				cursor: pointer;
+				font-size: 1rem;
+				border-radius: 5px;
+			}
+			button:hover {
+				background: #5a6fd1;
+			}
+			.result {
+				display: none;
+				text-align: center;
+				margin-top: 2rem;
+			}
+			.result h2 {
+				font-size: 4rem;
+				color: #667eea;
+				animation: pop 1s ease-in-out;
+			}
+			.result p {
+				font-size: 1.2rem;
+				margin-top: 10px;
+			}
+			.share-btn {
+				background: #25d366;
+				color: white;
+				padding: 10px 20px;
+				font-size: 1rem;
+				border: none;
+				border-radius: 5px;
+				cursor: pointer;
+				margin-top: 15px;
+			}
+			@keyframes pop {
+				0% {
+					transform: scale(0);
+					opacity: 0;
+				}
+				100% {
+					transform: scale(1);
+					opacity: 1;
+				}
+			}
+			.blog {
+				width: 90%;
+				max-width: 800px;
+				background: white;
+				padding: 1rem;
+				border-radius: 1rem;
+				box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+				margin: 2rem 0;
+			}
+
+			.blog h2 {
+				font-size: 1.8rem;
+				text-align: center;
+				color: #667eea;
+				margin-bottom: 1rem;
+			}
+
+			.blog h3 {
+				font-size: 1.4rem;
+				color: #444;
+				margin-top: 1.5rem;
+			}
+
+			.blog p {
+				font-size: 1rem;
+				color: #555;
+				line-height: 1.6;
+				margin-top: 0.5rem;
+			}
+
+			@media (min-width: 768px) {
+				.blog {
+					width: 70%;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1>Life partner's name first letter finder</h1>
+			<p>Discover the first letter of your life partner's name</p>
+		</header>
+
+		<div class="container" id="formContainer">
+			<form id="nameForm">
+				<label>Enter your Name:</label>
+				<input type="text" name="name" placeholder="Your name" required />
+
+				<label>Enter your Age:</label>
+				<input type="text" name="age" placeholder="Age" required />
+
+				<label>Your Best Friend:</label>
+				<input type="text" name="bestfriend" placeholder="Best friend's name" required />
+
+				<label>What is Your Hobby:</label>
+				<input type="text" name="hobby" placeholder="Your hobby" required />
+
+				<button type="submit">Submit</button>
+			</form>
+		</div>
+
+		<div class="result" id="resultSection">
+			<h2 id="firstLetter"></h2>
+			<button id="whatsappShare" class="share-btn">Share on WhatsApp</button>
+		</div>
+
+		<section class="blog">
+			<h2>Find the First Letter of Your Life Partner's Name</h2>
+			<p>Have you ever wondered what the first letter of your future life partner’s name could be? Whether you believe in destiny, astrology, or just enjoy a bit of fun, finding out the first letter of your soulmate’s name is an exciting and intriguing concept!</p>
+
+			<h3>Why Do People Want to Know Their Partner’s First Letter?</h3>
+			<p>Humans have always been curious about their future, especially when it comes to love and relationships. Many cultures have ancient traditions, numerology, and astrological methods that claim to predict certain aspects of one’s love life.</p>
+
+			<h3>Astrology and Name Predictions</h3>
+			<p>Many astrologers believe that based on your zodiac sign, the first letter of your partner’s name can be determined.</p>
+
+			<h3>Fun and Interactive Online Methods</h3>
+			<p>With technology, finding out the first letter of your future partner’s name has become a fun online trend. Interactive quizzes analyze your personality to predict a letter.</p>
+
+			<h3>Conclusion</h3>
+			<p>Whether you explore astrology, numerology, or online quizzes, the most important thing is to embrace the journey of love and connection.</p>
+		</section>
+
+		<footer>
+			<p>&copy; 2025 Find First Letter. All Rights Reserved.</p>
+		</footer>
+
+		<script>
+			document.querySelector("form").addEventListener("submit", function (event) {
+				event.preventDefault();
+
+				const name = document.querySelector('input[name="name"]').value.trim();
+				const age = document.querySelector('input[name="age"]').value.trim();
+				const bestfriend = document.querySelector('input[name="bestfriend"]').value.trim();
+				const hobby = document.querySelector('input[name="hobby"]').value.trim();
+				const formContainer = document.getElementById("formContainer");
+				const resultSection = document.getElementById("resultSection");
+				const firstLetterElement = document.getElementById("firstLetter");
+
+				if (!name || !age || !bestfriend || !hobby) {
+					alert("Please fill in all the fields before submitting.");
+					return;
+				}
+
+				fetch("http://127.0.0.1:8000/api/get-first-letter/", {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({ name, age, bestfriend, hobby }),
+				})
+					.then((response) => response.json())
+					.then((result) => {
+						if (result.first_letter) {
+							formContainer.style.display = "none";
+							firstLetterElement.textContent = result.first_letter;
+							resultSection.style.display = "block";
+
+							const whatsappShareBtn = document.getElementById("whatsappShare");
+							whatsappShareBtn.onclick = function () {
+								const shareText = `I found my life partner's first letter:\n✨ ${result.first_letter} ✨\nNow it's your turn! Check it out here: https://yourwebsite.com`;
+								const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
+								window.open(whatsappUrl, "_blank");
+							};
+						} else {
+							alert("Error: " + (result.message || "Invalid response from server"));
+						}
+					})
+					.catch((error) => {
+						console.error("Error:", error);
+						alert("Something went wrong. Please try again.");
+					});
+			});
+		</script>
+	</body>
+</html>
